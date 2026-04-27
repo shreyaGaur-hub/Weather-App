@@ -1,51 +1,86 @@
 # 🌤️ Weather App
 
-A clean, responsive weather web app built with **HTML**, **CSS**, and **vanilla JavaScript** that fetches real-time weather data for any city using the **OpenWeatherMap API**.
+A clean, responsive Weather App built with pure **HTML**, **CSS**, and **JavaScript** that fetches real-time weather data from the **OpenWeatherMap API** and displays temperature, humidity, and wind speed for any city in the world.
+
+---
+
+## 📸 Preview
+
+| Default State | Weather Result | Error State |
+|---|---|---|
+| Search box with placeholder | City weather card with data | Invalid city name message |
 
 ---
 
 ## ✨ Features
 
-- 🔍 **City Search** — Enter any city name to instantly fetch its current weather
+- 🔍 **City Search** — Enter any city name to get live weather data instantly
 - 🌡️ **Temperature** — Displays current temperature in °C
-- 💧 **Humidity** — Shows the humidity percentage
-- 💨 **Wind Speed** — Displays wind speed in km/h
-- 🌤️ **Dynamic Weather Icons** — Icons change based on weather conditions (Clear, Clouds, Rain, etc.)
-- 🎨 **Dynamic Gradient Background** — Card gradient shifts with weather/temperature (cool tones for cold, warm tones for hot)
-- ❌ **Error Handling** — Shows a friendly "Invalid city name!" message for unrecognized inputs
+- 💧 **Humidity** — Shows the current humidity percentage
+- 💨 **Wind Speed** — Displays real-time wind speed in km/h
+- 🌤️ **Dynamic Weather Icons** — Icons change based on weather condition (Clear, Clouds, Rain, etc.)
+- 🎨 **Dynamic Background** — Card gradient changes color based on weather conditions (warm tones for hot, cool tones for cold/rainy)
+- ❌ **Error Handling** — Displays a friendly "Invalid city name!" message for unrecognized city inputs
+
+---
+
+## 🛠️ Built With
+
+- **HTML5** — Markup and structure
+- **CSS3** — Styling, gradients, Flexbox layout, transitions
+- **JavaScript** — API calls, DOM manipulation, async/await
+- **OpenWeatherMap API** — Free weather data API
 
 
-## 🛠️ Tech Stack
-
-| Technology | Usage |
-|---|---|
-| HTML5 | App structure and layout |
-| CSS3 | Styling, gradients, flexbox, transitions |
-| JavaScript | API calls, DOM manipulation, logic |
-| OpenWeatherMap API | Live weather data source |
-
+---
 
 ## ⚙️ How It Works
 
-1. User types a city name and clicks the search button (or presses Enter)
-2. JavaScript captures the input and constructs an API request URL:
-   ```
-   https://api.openweathermap.org/data/2.5/weather?q={city}&appid={apiKey}&units=metric
-   ```
-3. The `fetch()` function sends an async GET request to OpenWeatherMap
+1. User types a city name into the search box and clicks the search button (or presses Enter)
+2. JavaScript captures the input and constructs the API request URL using the city name and API key
+3. A `fetch()` call is made to the OpenWeatherMap current weather endpoint
 4. The JSON response is parsed to extract:
-   - `main.temp` → Temperature
-   - `main.humidity` → Humidity
-   - `wind.speed` → Wind Speed
-   - `weather[0].main` → Condition (Clear, Clouds, Rain, etc.)
-5. DOM is updated dynamically with the fetched values
-6. If the API returns a `404` status, the error message is displayed
+   - City name
+   - Temperature (converted from Kelvin to °C)
+   - Humidity percentage
+   - Wind speed in km/h
+   - Weather condition ID (used to pick the right icon and background)
+5. The DOM is dynamically updated to display all weather information
+6. If the city is not found (API returns `cod: 404`), an error message is shown
 
+---
 
 ## 🔑 API Reference
 
-This app uses the **OpenWeatherMap Current Weather Data API**:
+This project uses the **OpenWeatherMap Current Weather API**:
 
 ```
-GET https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}&units=metric
+https://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&units=metric
 ```
+
+| Parameter | Description |
+|---|---|
+| `q` | City name entered by the user |
+| `appid` | Your personal OpenWeatherMap API key |
+| `units=metric` | Returns temperature in Celsius |
+
+
+---
+
+## ⚠️ Common Issues
+
+**401 Invalid API Key**
+> Make sure the API key is correctly copied and activated. New keys from OpenWeatherMap may take up to an hour to activate after registration.
+
+**City Not Found**
+> Double-check the spelling of the city name. The app will display "Invalid city name!" for unrecognized inputs.
+
+---
+
+
+## 🙏 Acknowledgements
+
+- [OpenWeatherMap](https://openweathermap.org/) for the free weather API
+- Inspired by the **Easy Tutorials** YouTube channel
+
+---
